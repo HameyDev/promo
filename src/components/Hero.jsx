@@ -1,7 +1,7 @@
 import { FiDownload } from "react-icons/fi";
 import { CiCircleCheck } from "react-icons/ci";
 
-export default function Hero() {
+export default function Hero({ onRegisterClick }) {
   return (
     <section className="bg-gradient-to-br from-purple-50 to-pink-50 pt-20">
       <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
@@ -36,7 +36,7 @@ export default function Hero() {
               Download Catalogue
               <FiDownload size={20}/>
             </button>
-            <button className="border-2 border-purple-600 text-purple-700 px-6 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition">
+            <button onClick={onRegisterClick} className="border-2 border-purple-600 text-purple-700 px-6 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition">
               Register Now
             </button>
           </div>

@@ -1,6 +1,6 @@
-export default function CategoriesWithForm() {
+export default function CategoriesWithForm({ formRef }) {
   return (
-    <section className="bg-[#faf7ff] py-16">
+    <section ref={formRef} className="bg-[#faf7ff] py-16">
       <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-40 items-start justify-between">
 
         {/* LEFT CONTENT */}
@@ -35,8 +35,8 @@ export default function CategoriesWithForm() {
         </div>
 
         {/* RIGHT FORM */}
-        <div className="max-w-6xl bg-white mx-auto rounded-3xl shadow-xl p-8">
-          <h3 className="text-xl font-bold text-center text-purple-800">
+        <div  className="max-w-6xl bg-white mx-auto rounded-3xl shadow-xl p-8">
+          <h3 className="text-xl font-bold text-center text-[#2B0A88]">
             Fill the Form and Our Team will <br /> Contact you Shortly
           </h3>
 
@@ -48,12 +48,13 @@ export default function CategoriesWithForm() {
 
             <div className="grid grid-cols-2 gap-4">
               <Select label="Course Category*" />
+
               <Select label="Mode*" />
             </div>
 
             <button
               type="submit"
-              className="w-full mt-4 bg-gradient-to-r from-purple-700 to-pink-600 text-white py-3 rounded-xl font-semibold hover:opacity-90"
+              className="w-full mt-4 bg-gradient-to-r from-[#2B0A88] to-[#8A2D83] text-white py-3 rounded-xl font-semibold hover:opacity-90"
             >
               Get Free Consultation
             </button>
@@ -83,14 +84,36 @@ function Input({ label, placeholder }) {
 
 function Select({ label }) {
   return (
-    <div>
-      <label className="text-sm font-medium text-gray-700">
-        {label}
-      </label>
-      <select className="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
-        <option>Please Select</option>
-      </select>
-    </div>
+    <>
+      {label === "Course Category*" && (
+        <div>
+          <label className="text-sm font-medium text-gray-700">
+            {label}
+          </label>
+          <select className="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
+            <option value="">Please Select One</option>
+            <option value="diploma">3 Months Diploma Programs</option>
+            <option value="courses">1 Months Short Courses</option>
+            <option value="master-classes">Master-Classes & Workshops</option>
+            <option value="recordings">Pre-Recorded Sessions</option>
+          </select>
+        </div>
+      )}
+      {label === "Mode*" && (
+        <div>
+          <label className="text-sm font-medium text-gray-700">
+            {label}
+          </label>
+          <select className="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
+            <option value="">Select Mode</option>
+            <option value="online">Online</option>
+            <option value="physical">Physical</option>
+          </select>
+        </div>
+      )}
+
+    </>
+
   );
 }
 

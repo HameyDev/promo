@@ -1,41 +1,15 @@
+import { cards } from "../data/CategoryCards"
+import  Input  from "../utils/Input";
+import Select  from "../utils/Select";
+
 export default function CategoriesWithForm({ formRef }) {
   return (
     <section ref={formRef} className="bg-[#faf7ff] py-16">
-      <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-40 items-start justify-between">
 
-        {/* LEFT CONTENT */}
-        <div>
-          <h2 className="text-3xl md:text-3xl font-bold text-[#2B0A88]">
-            Explore Our Training Categories
-          </h2>
-          <p className="mt-3 text-gray-600 max-w-xl">
-            Pick from our 1-Month, 3-Month, and Extended Training Programs
-            designed for real-world impact.
-          </p>
+      <div className="max-w-6xl mx-auto px-4 grid gap-12 lg:grid-cols-2 lg:gap-40">
 
-          {/* Cards */}
-          <div className="mt-10 grid sm:grid-cols-2 gap-6  w-[600px]">
-            {cards.map((item) => (
-              <div
-                key={item.id}
-                className="bg-[linear-gradient(101.01deg,#FFD7FF_-0.03%,#F0EEFF_59.42%)] border border-purple-100 rounded-2xl p-3 hover:shadow-lg transition w-[260px]"
-              >
-                <div className="w-8 h-8 rounded-full bg-[#2B0A88] text-white flex items-center justify-center text-sm font-bold">
-                  {item.id}
-                </div>
-                <h3 className="mt-2 font-semibold text-[#2B0A88]">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-sm text-gray-600">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="order-1 lg:order-2 bg-white rounded-3xl shadow-xl p-8">
 
-        {/* RIGHT FORM */}
-        <div  className="max-w-6xl bg-white mx-auto rounded-3xl shadow-xl p-8">
           <h3 className="text-xl font-bold text-center text-[#2B0A88]">
             Fill the Form and Our Team will <br /> Contact you Shortly
           </h3>
@@ -46,98 +20,49 @@ export default function CategoriesWithForm({ formRef }) {
             <Input label="Phone No*" placeholder="Your Phone" />
             <Input label="City*" placeholder="Your City" />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Select label="Course Category*" />
-
               <Select label="Mode*" />
             </div>
 
-            <button
-              type="submit"
-              className="w-full mt-4 bg-gradient-to-r from-[#2B0A88] to-[#8A2D83] text-white py-3 rounded-xl font-semibold hover:opacity-90"
-            >
+            <button type="submit" className="w-full mt-4 bg-gradient-to-r from-[#2B0A88] to-[#8A2D83] text-white py-3 rounded-xl font-semibold hover:opacity-90">
               Get Free Consultation
             </button>
           </form>
+
         </div>
 
+        <div className="order-2 lg:order-1">
+
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#2B0A88] text-center lg:text-left">
+            Explore Our Training Categories
+          </h2>
+
+          <p className="mt-3 text-gray-600 max-w-xl text-center lg:text-left mx-auto lg:mx-0">
+            Pick from our 1-Month, 3-Month, and Extended Training Programs
+            designed for real-world impact.
+          </p>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 w-full max-w-[600px] mx-auto lg:mx-0">
+            {cards.map((item) => (
+              <div
+                key={item.id}
+                className="bg-[linear-gradient(101.01deg,#FFD7FF_-0.03%,#F0EEFF_59.42%)] border border-purple-100 rounded-2xl p-4 hover:shadow-lg transition"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#2B0A88] text-white flex items-center justify-center text-sm font-bold">
+                  {item.id}
+                </div>
+
+                <h3 className="mt-2 font-semibold text-[#2B0A88]">
+                  {item.title}
+                </h3>
+
+                <p className="mt-1 text-sm text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-
-/* ------------------ helpers ------------------ */
-
-function Input({ label, placeholder }) {
-  return (
-    <div>
-      <label className="text-sm font-medium text-gray-700">
-        {label}
-      </label>
-      <input
-        placeholder={placeholder}
-        className="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-400 outline-none"
-      />
-    </div>
-  );
-}
-
-function Select({ label }) {
-  return (
-    <>
-      {label === "Course Category*" && (
-        <div>
-          <label className="text-sm font-medium text-gray-700">
-            {label}
-          </label>
-          <select className="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
-            <option value="">Please Select One</option>
-            <option value="diploma">3 Months Diploma Programs</option>
-            <option value="courses">1 Months Short Courses</option>
-            <option value="master-classes">Master-Classes & Workshops</option>
-            <option value="recordings">Pre-Recorded Sessions</option>
-          </select>
-        </div>
-      )}
-      {label === "Mode*" && (
-        <div>
-          <label className="text-sm font-medium text-gray-700">
-            {label}
-          </label>
-          <select className="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
-            <option value="">Select Mode</option>
-            <option value="online">Online</option>
-            <option value="physical">Physical</option>
-          </select>
-        </div>
-      )}
-
-    </>
-
-  );
-}
-
-/* ------------------ data ------------------ */
-
-const cards = [
-  {
-    id: 1,
-    title: "3 Months Diploma Programs",
-    desc: "Comprehensive, career-focused diplomas designed for long-term skill building and job readiness.",
-  },
-  {
-    id: 2,
-    title: "1 Month Short Courses",
-    desc: "Fast-track courses for quick upskilling in high-demand digital areas.",
-  },
-  {
-    id: 3,
-    title: "Master-Classes & Workshops",
-    desc: "Intensive sessions led by industry experts for practical exposure.",
-  },
-  {
-    id: 4,
-    title: "Pre-Recorded Sessions",
-    desc: "Learn anytime, anywhere with professionally recorded courses.",
-  },
-];
